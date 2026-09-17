@@ -1,0 +1,172 @@
+{
+  "id": "programme_insurance_class_reader_1",
+  "pluginKey": "@official-plugins/feishu-bitable",
+  "pluginVersion": "1.0.22",
+  "name": "Internal险种表查询",
+  "description": "读取Internal Base中Insurance_Class表全部记录，用于险种总览与Dashboard聚合",
+  "icon": "",
+  "paramsSchema": {},
+  "formValue": {
+    "fields": [
+      {
+        "id": "fldk4gOJPA",
+        "name": "Class_Code",
+        "type": 1,
+        "bizType": "Text",
+        "readable": true,
+        "writeable": true
+      },
+      {
+        "id": "fldIbnIdu1",
+        "name": "Full_Name",
+        "type": 1,
+        "bizType": "Text",
+        "readable": true,
+        "writeable": true
+      },
+      {
+        "id": "fldIH0ds4M",
+        "name": "Item_No",
+        "type": 2,
+        "bizType": "Number",
+        "readable": true,
+        "writeable": true
+      },
+      {
+        "id": "fldttgAgYh",
+        "name": "Broker",
+        "type": 3,
+        "bizType": "SingleSelect",
+        "enumValues": ["[redacted]"],
+        "readable": true,
+        "writeable": true
+      },
+      {
+        "name": "Is_Core",
+        "type": 7,
+        "readable": true,
+        "writeable": true,
+        "bizType": "Checkbox",
+        "id": "fld7chZpLH"
+      },
+      {
+        "writeable": true,
+        "id": "fldjMdd53L",
+        "name": "Has_Claims_Ledger",
+        "type": 7,
+        "bizType": "Checkbox",
+        "readable": true
+      },
+      {
+        "writeable": true,
+        "enumValues": [
+          "HKD",
+          "USD",
+          "RMB"
+        ],
+        "id": "fldRdMEMky",
+        "name": "Currency",
+        "type": 3,
+        "bizType": "SingleSelect",
+        "readable": true
+      },
+      {
+        "id": "fldHL7QwGT",
+        "name": "Remarks",
+        "type": 1,
+        "bizType": "Text",
+        "readable": true,
+        "writeable": true
+      },
+      {
+        "name": "Policies",
+        "type": 21,
+        "bizType": "DuplexLink",
+        "readable": false,
+        "writeable": false,
+        "id": "fld8svtOGq"
+      },
+      {
+        "name": "Claims",
+        "type": 21,
+        "bizType": "DuplexLink",
+        "id": "fldFtGGiwR",
+        "readable": false,
+        "writeable": false
+      },
+      {
+        "type": 19,
+        "bizType": "Lookup",
+        "readable": true,
+        "writeable": false,
+        "id": "fldYwt0qMN",
+        "name": "Claims_Count_Rollup"
+      },
+      {
+        "id": "fldR4QyxON",
+        "name": "Open_Claims_Rollup",
+        "type": 19,
+        "bizType": "Lookup",
+        "readable": true,
+        "writeable": false
+      },
+      {
+        "type": 19,
+        "bizType": "Lookup",
+        "id": "fldpQHCLtd",
+        "name": "Total_Incurred_Rollup",
+        "readable": true,
+        "writeable": false
+      },
+      {
+        "type": 3,
+        "bizType": "SingleSelect",
+        "readable": true,
+        "writeable": true,
+        "enumValues": [
+          "主险种",
+          "附属·项目保单"
+        ],
+        "id": "fldYzCtNbj",
+        "name": "Class_Level"
+      },
+      {
+        "id": "fldpf5jjcj",
+        "name": "Premium_Current_Year",
+        "readable": true,
+        "writeable": false,
+        "type": 20,
+        "bizType": "Formula"
+      },
+      {
+        "type": 2,
+        "bizType": "Number",
+        "readable": true,
+        "writeable": true,
+        "id": "fldDR9z0d6",
+        "name": "Premium_Manual"
+      },
+      {
+        "id": "fld4BB5pSB",
+        "name": "Is_Summary_Only",
+        "type": 7,
+        "bizType": "Checkbox",
+        "readable": true,
+        "writeable": true
+      },
+      {
+        "writeable": true,
+        "id": "fldT8wybFr",
+        "name": "Insurer",
+        "type": 1,
+        "bizType": "Text",
+        "readable": true
+      }
+    ],
+    "appToken": "demo-base-token",
+    "tableID": "demo-table-id"
+  },
+  "createdAt": 1787000000000,
+  "updatedAt": 1789031963733,
+  "createdBy": 7654116046898629831
+}

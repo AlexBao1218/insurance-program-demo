@@ -1,0 +1,60 @@
+{
+  "id": "custom_feishu_agent_message_sender_1",
+  "pluginKey": "@official-plugins/send-feishu-message",
+  "pluginVersion": "1.0.29",
+  "name": "custom-feishu-agent",
+  "description": "对接飞书自建AI智能体agent_4kq8z10km94jjnr，通过消息通道桥接实现对话式问答",
+  "icon": "",
+  "paramsSchema": {
+    "type": "object",
+    "properties": {
+      "message_title": {
+        "type": "string",
+        "description": "消息卡片标题"
+      },
+      "message_content": {
+        "type": "string",
+        "description": "发送给AI智能体的对话内容"
+      },
+      "receiver_users": {
+        "type": "array",
+        "description": "接收回复的用户ID列表",
+        "items": {
+          "type": "string",
+          "description": "用户ID"
+        }
+      },
+      "receiver_groups": {
+        "type": "array",
+        "description": "接收回复的群组ID列表",
+        "items": {
+          "type": "string",
+          "description": "群组ID"
+        }
+      },
+      "action_buttons": {
+        "type": "array",
+        "description": "消息底部操作按钮配置",
+        "items": {
+          "type": "string",
+          "description": "按钮配置JSON字符串"
+        }
+      }
+    },
+    "required": [
+      "message_title",
+      "message_content"
+    ]
+  },
+  "formValue": {
+    "title": "{{input.message_title}}",
+    "content": "{{input.message_content}}",
+    "sender": "agent_4kq8z10km94jjnr",
+    "receiverUserList": "{{input.receiver_users}}",
+    "receiverGroupList": "{{input.receiver_groups}}",
+    "buttons": "{{input.action_buttons}}"
+  },
+  "createdAt": 1785293221911,
+  "updatedAt": 1785293221911,
+  "createdBy": 7654116046898629831
+}

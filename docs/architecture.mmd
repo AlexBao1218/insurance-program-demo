@@ -1,0 +1,48 @@
+%% Internal Insurance Program: system architecture
+%% Render with any mermaid renderer (e.g. mermaid.live or the mermaid CLI).
+flowchart TB
+  subgraph Bitable["Feishu Bitable (one base, three tables)"]
+    IC[(Insurance_Class<br/>34 rows)]
+    PM[(Policy_Master<br/>201 rows)]
+    CM[(Claims_Master<br/>767 rows)]
+  end
+
+  subgraph Caps["Spark capabilities (paginated table readers)"]
+    R1[class reader]
+    R2[policy reader]
+    R3[claims reader]
+  end
+
+  subgraph FE["React SPA (Vite, TypeScript, Tailwind, shadcn/ui, ECharts)"]
+    Loader["data loader<br/>fetch all pages, tolerant field extractors, 3-table join"]
+    Cache[("localStorage cache<br/>key guards + version guard")]
+    Mock["bundled mock dataset<br/>'Preview data' badge"]
+    Analytics["analytics module<br/>pure aggregations: pro-rata year attribution,<br/>top-7+others, trend, loss-ratio matrix, KPIs"]
+    Pages["Hub / Dashboard / Data Management / Class Detail"]
+    Export["Report export<br/>Markdown, Word (.docx), print to PDF, Feishu Doc"]
+    Assist["AI Assistant page<br/>desktop: embedded iframe<br/>mobile: top-level redirect"]
+  end
+
+  subgraph BE["NestJS backend (report-proxy module)"]
+    Gen["POST /api/generate-report"]
+    Doc["POST /api/export-report-to-doc"]
+    Token["tenant token cache<br/>single in-flight refresh"]
+  end
+
+  subgraph Aily["Feishu Aily"]
+    Agent["Custom Q&A agent"]
+    Skill["Report-narrative skill"]
+  end
+
+  Drive["Feishu Drive import API"]
+
+  IC --> R1 --> Loader
+  PM --> R2 --> Loader
+  CM --> R3 --> Loader
+  Loader --> Cache
+  Cache --> Loader
+  Loader -. "capability unavailable" .-> Mock
+  Loader --> Analytics --> Pages --> Export
+  Export --> Gen --> Token --> Skill
+  Export --> Doc --> Token --> Drive
+  Assist --> Agent

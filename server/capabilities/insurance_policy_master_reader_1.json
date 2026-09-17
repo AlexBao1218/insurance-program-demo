@@ -1,0 +1,208 @@
+{
+  "id": "programme_policy_master_reader_1",
+  "pluginKey": "@official-plugins/feishu-bitable",
+  "pluginVersion": "1.0.22",
+  "name": "Internal保单主表查询",
+  "description": "读取Internal Base中Policy_Master表全部记录，用于保费分析与险种详情历年保单展示",
+  "icon": "",
+  "paramsSchema": {},
+  "formValue": {
+    "appToken": "demo-base-token",
+    "tableID": "demo-table-id",
+    "fields": [
+      {
+        "id": "fldVmJND33",
+        "name": "Policy_ID",
+        "type": 1,
+        "bizType": "Text",
+        "readable": true,
+        "writeable": true
+      },
+      {
+        "id": "fldycQGZe5",
+        "name": "Policy_No",
+        "type": 1,
+        "bizType": "Text",
+        "readable": true,
+        "writeable": true
+      },
+      {
+        "bizType": "Text",
+        "readable": true,
+        "writeable": true,
+        "id": "fldxaYQpCd",
+        "name": "Policy_Year",
+        "type": 1
+      },
+      {
+        "writeable": true,
+        "id": "fldwEqIN60",
+        "name": "Sub_Policy",
+        "type": 3,
+        "bizType": "SingleSelect",
+        "enumValues": [
+          "Private Car",
+          "Fleet",
+          "Motor Cycle",
+          "Primary",
+          "1st Excess",
+          "2nd Excess"
+        ],
+        "readable": true
+      },
+      {
+        "type": 5,
+        "readable": true,
+        "writeable": true,
+        "bizType": "DateTime",
+        "id": "fld67ss1Fa",
+        "name": "Period_Start"
+      },
+      {
+        "bizType": "DateTime",
+        "id": "fldgRj8z5j",
+        "readable": true,
+        "writeable": true,
+        "name": "Period_End",
+        "type": 5
+      },
+      {
+        "name": "Insurer",
+        "type": 1,
+        "bizType": "Text",
+        "id": "fldsnUkMsp",
+        "readable": true,
+        "writeable": true
+      },
+      {
+        "id": "fldE8qoOXo",
+        "name": "Broker",
+        "type": 3,
+        "bizType": "SingleSelect",
+        "enumValues": ["[redacted]"],
+        "readable": true,
+        "writeable": true
+      },
+      {
+        "enumValues": [
+          "HKD",
+          "USD",
+          "RMB"
+        ],
+        "readable": true,
+        "writeable": true,
+        "id": "fldCh1kf0w",
+        "name": "Currency",
+        "type": 3,
+        "bizType": "SingleSelect"
+      },
+      {
+        "bizType": "Number",
+        "id": "fldsQJSnMV",
+        "name": "Premium_Full_Term",
+        "type": 2,
+        "readable": true,
+        "writeable": true
+      },
+      {
+        "readable": true,
+        "writeable": true,
+        "id": "fldyk7tbJA",
+        "name": "Premium_Annualized_12m",
+        "type": 2,
+        "bizType": "Number"
+      },
+      {
+        "id": "fldOrigAmt",
+        "name": "Original_Amount",
+        "type": 2,
+        "bizType": "Number",
+        "readable": true,
+        "writeable": false
+      },
+      {
+        "id": "fld6eOdbGB",
+        "name": "Is_Placeholder",
+        "type": 7,
+        "bizType": "Checkbox",
+        "readable": true,
+        "writeable": true
+      },
+      {
+        "name": "PDF_Policy",
+        "type": 17,
+        "bizType": "Attachment",
+        "id": "fldhUpc6g1",
+        "readable": true,
+        "writeable": false
+      },
+      {
+        "id": "fld885U407",
+        "name": "PDF_Endorsement",
+        "type": 17,
+        "bizType": "Attachment",
+        "readable": true,
+        "writeable": false
+      },
+      {
+        "id": "fldDMOv5Xw",
+        "name": "PDF_DN_CN",
+        "type": 17,
+        "bizType": "Attachment",
+        "readable": true,
+        "writeable": false
+      },
+      {
+        "bizType": "Text",
+        "id": "fldvdRiYTM",
+        "name": "Remarks",
+        "type": 1,
+        "readable": true,
+        "writeable": true
+      },
+      {
+        "id": "flds67b1so",
+        "name": "Class",
+        "type": 21,
+        "bizType": "DuplexLink",
+        "readable": true,
+        "writeable": false
+      },
+      {
+        "id": "fldxaypQry",
+        "name": "Claims",
+        "type": 21,
+        "bizType": "DuplexLink",
+        "readable": false,
+        "writeable": false
+      },
+      {
+        "name": "Claims_Count",
+        "type": 19,
+        "bizType": "Lookup",
+        "readable": true,
+        "writeable": false,
+        "id": "fldEpQVSRp"
+      },
+      {
+        "name": "Claims_Incurred",
+        "type": 19,
+        "bizType": "Lookup",
+        "readable": true,
+        "writeable": false,
+        "id": "fldBVB5QeL"
+      },
+      {
+        "writeable": false,
+        "id": "fldUtZLeRb",
+        "name": "Loss_Ratio",
+        "type": 20,
+        "bizType": "Formula",
+        "readable": true
+      }
+    ]
+  },
+  "createdAt": 1787000000000,
+  "updatedAt": 1787119336486,
+  "createdBy": 7654116046898629831
+}

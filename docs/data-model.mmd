@@ -1,0 +1,75 @@
+%% Internal Insurance Program: Bitable data model (three tables, duplex links)
+%% Render with any mermaid renderer (e.g. mermaid.live or the mermaid CLI).
+%% Production schema. In the public demo, record-level text fields (Policy_No, Insurer,
+%% Claimant, Claim_No, Description, Loss_Location, PDF names, Remarks) hold a redaction sentinel.
+erDiagram
+  INSURANCE_CLASS ||--o{ POLICY_MASTER : "Class (duplex link)"
+  INSURANCE_CLASS ||--o{ CLAIMS_MASTER : "Class (duplex link)"
+  POLICY_MASTER ||--o{ CLAIMS_MASTER : "Policy (duplex link)"
+
+  INSURANCE_CLASS {
+    text Class_Code PK "EC, PPL, Motor, PARMBBI, D&O ..."
+    text Full_Name
+    number Item_No
+    select Broker "class-level; charts use per-policy broker"
+    checkbox Is_Core "EC, PPL, Motor, PARMBBI"
+    checkbox Has_Claims_Ledger "PPL, EC, Motor only"
+    select Class_Level "main (18) or project/ancillary (16)"
+    select Currency "HKD, USD, RMB"
+    formula Premium_Current_Year
+    rollup Claims_Count_Rollup
+    rollup Open_Claims_Rollup
+    rollup Total_Incurred_Rollup
+    checkbox Is_Summary_Only "no policy rows by design"
+    number Premium_Manual "summary-only classes"
+    text Insurer "summary-only classes"
+  }
+
+  POLICY_MASTER {
+    text Policy_ID PK "{Policy_No}_{Policy_Year}"
+    text Policy_No "empty on placeholder rows"
+    text Policy_Year "YY/YY, or 24-26 for 18-month policies"
+    select Sub_Policy "Primary, 1st Excess, Fleet, Private Car ..."
+    date Period_Start
+    date Period_End
+    text Insurer "free text, co-insurance shares, layers"
+    select Broker "per-year; empty on 23/24 non-core rows"
+    select Currency
+    number Premium_Full_Term "invoice amount, 18 months for long policies"
+    number Premium_Annualized_12m "used by every chart"
+    number Original_Amount "pre-conversion, USD/RMB rows"
+    checkbox Is_Placeholder "55 rows anchoring historical claims"
+    attachment PDF_Policy
+    attachment PDF_Endorsement
+    attachment PDF_DN_CN
+    rollup Claims_Count
+    rollup Claims_Incurred
+    formula Loss_Ratio
+    text Remarks
+  }
+
+  CLAIMS_MASTER {
+    text Claim_ID PK "unique; suffix _01/_02 for multi-incident"
+    text Claim_No "insurer number, may repeat"
+    text Policy_Year
+    date DOL "date of loss"
+    text Claimant
+    text Description
+    text Loss_Location "PPL and Motor only"
+    text Lead_Insurer_Ref
+    text Sequence_No
+    number Case_Value_Ind "PPL only"
+    number Case_Value_Exp "PPL only"
+    number Reserve_Ind "EC only"
+    number Reserve_Exp "EC only"
+    number Reserve_Total
+    number Paid_Total
+    number Total_Incurred
+    number Paid_Ind
+    number Paid_Exp
+    number Excess_Recovered "PPL and Motor"
+    select Status "Open or Closed"
+    text Last_Update_Note
+    text Remarks
+    select Source_File "which ledger the row came from"
+  }

@@ -1,0 +1,66 @@
+@import "tailwindcss";
+@import "./platform-base.css";
+@import "tw-animate-css";
+@import "./tailwind-theme.css";
+@import "./typography.css";
+
+@page {
+  size: A4;
+  margin: 14mm;
+}
+
+/* 移动端表格横向滚动容器 */
+@media (max-width: 639px) {
+  .prose table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+  .prose table th:first-child,
+  .prose table td:first-child {
+    position: sticky;
+    left: 0;
+    background: hsl(0 0% 100%);
+    z-index: 1;
+    box-shadow: 2px 0 4px -2px rgba(0,0,0,0.1);
+  }
+  .prose table thead th:first-child {
+    background: hsl(220 14% 96%);
+    z-index: 2;
+  }
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #report-print-root,
+  #report-print-root * {
+    visibility: visible;
+  }
+
+  #report-print-root {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  .print-avoid-break {
+    break-inside: avoid;
+  }
+
+  .print-hidden {
+    display: none !important;
+  }
+
+  table {
+    break-inside: avoid;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+}
