@@ -100,7 +100,10 @@ export const ErrorRender: React.FC<{
     <pre style={{ whiteSpace: 'pre-wrap', opacity: 0.7 }}>
       {error instanceof Error ? error.message : String(error)}
     </pre>
-    {resetErrorBoundary && <button onClick={() => resetErrorBoundary()}>Retry</button>}
+    {resetErrorBoundary && <button onClick={() => {
+      if (error instanceof Error && /dynamically imported module|module script|Loading chunk|Importing a module/i.test(error.message)) window.location.reload();
+      else resetErrorBoundary();
+    }}>Retry</button>}
   </div>
 )
 

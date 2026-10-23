@@ -1,9 +1,11 @@
+import { usePortfolioReady } from '@/lib/usePortfolioReady';
 import DemoFooter from '@/components/DemoFooter';
 import TopBar from './TopBar';
 import ProgramCard from './ProgramCard';
 import DealerCard from './DealerCard';
 
 export default function HomePage() {
+  usePortfolioReady(true);
   return (
     <div
       style={{
